@@ -1,0 +1,28 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
+  <PropertyGroup>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) or '$(EnableWindowsTargeting)' == 'true'">$(TargetFrameworks);net6.0-windows10.0.18362</TargetFrameworks>
+    <TargetFrameworks>$(TargetFrameworks)</TargetFrameworks>
+    <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
+    <GenerateLibraryLayout>true</GenerateLibraryLayout>
+    <LangVersion>10.0</LangVersion>
+    <Nullable>annotations</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230313.1" />
+    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22621.28" />
+    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.22621.28" />
+  </ItemGroup>
+
+  <Target Name="UwpToWinUi" BeforeTargets="PrepareForBuild">
+    <ItemGroup>
+      <InputFiles Include="..\XamlPlus\StyleExtension\*.cs" />
+      <InputFiles Include="..\XamlPlus\ThemeAwareBitmap\*.cs" />
+    </ItemGroup>
+    <WriteLinesToFile File="$([System.String]::Copy('%(InputFiles.Identity)').Replace('..\XamlPlus\', '$(IntermediateOutputPath)'))" Lines="$([System.IO.File]::ReadAllText('%(InputFiles.Identity)').Replace('Windows.UI.Xaml', 'Microsoft.UI.Xaml'))" Overwrite="true" Encoding="Unicode" />
+    <ItemGroup>
+      <Compile Include="$(IntermediateOutputPath)\StyleExtension\*.cs" />
+      <Compile Include="$(IntermediateOutputPath)\ThemeAwareBitmap\*.cs" />
+    </ItemGroup>
+  </Target>
+</Project>

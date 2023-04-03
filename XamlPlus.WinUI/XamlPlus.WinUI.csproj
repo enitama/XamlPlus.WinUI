@@ -6,7 +6,22 @@
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
     <LangVersion>10.0</LangVersion>
     <Nullable>annotations</Nullable>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <Version>$(VersionPrefix)-pre</Version>
+    <Copyright>The code in the package is Copyright (c) 2020-2021 Rudy Huyn</Copyright>
+    <Description>Unofficial WinUI 3 compatible fork of github.com/rudyhuyn/XamlPlus</Description>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <PackageId>Unofficial.XamlPlus.WinUI</PackageId>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/enitama/XamlPlus.WinUI</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/enitama/XamlPlus.WinUI</RepositoryUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE" Pack="true" PackagePath="" />
+    <None Include="..\README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.230313.1" />

@@ -9,3 +9,9 @@ No additional development is intended for this repository beyond the bare minimu
 - `Style.ExceptHighContrast` does not seem to work (see the Sample.WinUI project)
 
 Help is appreciated!
+
+## Install
+
+```
+dotnet add package Unofficial.XamlPlus.WinUI --prerelease
+```
